@@ -113,57 +113,48 @@ const icone = [
 	}
 ];
 
-let contenutoCard = "";
+
 const containerDom = document.querySelector('.container');
 const tipoDom = document.getElementById('tipo')
 
 
 icone.forEach((elemento)=> {
-    let contenutoContainer = `<div class="card">
-                                <i class="fa-solid ${elemento.prefix}${elemento.name}" style="color: ${elemento.color}"></i>
-                                <p>${elemento.name}</p>
-                	        </div>`;
-
-    contenutoCard += contenutoContainer;
+    containerDom.append(generaCard(elemento));
 })
 
-containerDom.innerHTML = contenutoCard;
 
 tipoDom.addEventListener('change', function(){
     containerDom.innerHTML = ''
     if (tipoDom.value == 'animal') {       
         icone.filter(elemento => {
             if (elemento.type == 'animal') {
-                containerDom.innerHTML += `<div class="card">
-                                            <i class="fa-solid ${elemento.prefix}${elemento.name}" style="color: ${elemento.color}"></i>
-                                            <p>${elemento.name}</p>
-                                            </div>`;
+                containerDom.append(generaCard(elemento));
             }
         });
     } else if (tipoDom.value == 'vegetable') {       
         icone.filter(elemento => {
             if (elemento.type == 'vegetable') {
-                containerDom.innerHTML += `<div class="card">
-                                            <i class="fa-solid ${elemento.prefix}${elemento.name}" style="color: ${elemento.color}"></i>
-                                            <p>${elemento.name}</p>
-                                            </div>`;
+                containerDom.append(generaCard(elemento));
             }
         });
     } else if (tipoDom.value == 'user') {       
         icone.filter(elemento => {
             if (elemento.type == 'user') {
-                containerDom.innerHTML += `<div class="card">
-                                            <i class="fa-solid ${elemento.prefix}${elemento.name}" style="color: ${elemento.color}"></i>
-                                            <p>${elemento.name}</p>
-                                            </div>`;
+                containerDom.append(generaCard(elemento));
             }
         });
     } else {
         icone.forEach(elemento => {
-            containerDom.innerHTML += `<div class="card">
-                                            <i class="fa-solid ${elemento.prefix}${elemento.name}" style="color: ${elemento.color}"></i>
-                                            <p>${elemento.name}</p>
-                                            </div>`;
+            containerDom.append(generaCard(elemento));
         });
     }
 });
+
+function generaCard(elemento) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `<i class="fa-solid ${elemento.prefix}${elemento.name}" style="color: ${elemento.color}"></i>
+                      <p>${elemento.name}</p>`
+    return card;
+}
+
