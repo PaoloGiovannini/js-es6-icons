@@ -113,16 +113,17 @@ const icone = [
 	}
 ];
 
-
+//riferimenti al Dom
 const containerDom = document.querySelector('.container');
 const tipoDom = document.getElementById('tipo')
 
 
+//generazione carte 
 icone.forEach((elemento)=> {
     containerDom.append(generaCard(elemento));
 })
 
-
+//filtro icone per tipo
 tipoDom.addEventListener('change', function(){
     containerDom.innerHTML = ''
     if (tipoDom.value == 'animal') {       
@@ -150,6 +151,7 @@ tipoDom.addEventListener('change', function(){
     }
 });
 
+//funzione che genera le card e applica le icone
 function generaCard(elemento) {
     const card = document.createElement('div');
     card.classList.add('card');
