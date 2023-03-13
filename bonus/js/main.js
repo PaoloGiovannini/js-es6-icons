@@ -113,16 +113,21 @@ const icone = [
 	}
 ];
 
-
+//riferimenti al Dom
 const containerDom = document.querySelector('.container');
 const tipoDom = document.getElementById('tipo')
 
 
+//richiamo la funzione che genera le option
+generaOption()
+
+
+//generazione carte 
 icone.forEach((elemento)=> {
     containerDom.append(generaCard(elemento));
 })
 
-
+//filtro icone per tipo
 tipoDom.addEventListener('change', function(){
     containerDom.innerHTML = ''
     if (tipoDom.value == 'animal') {       
@@ -150,6 +155,8 @@ tipoDom.addEventListener('change', function(){
     }
 });
 
+
+//funzione che genera le card applica le icone e il colore generato in maniera casuale
 function generaCard(elemento) {
 	let coloreCasuale = Math.floor(Math.random()*16777215).toString(16);
     const card = document.createElement('div');
@@ -159,3 +166,16 @@ function generaCard(elemento) {
     return card;
 }
 
+
+//funzione che genera le option e le mette nel select
+function generaOption() {
+    let ArrayOpzioniDaVisualizzare = [];
+    icone.forEach(elemento => {
+        if(!ArrayOpzioniDaVisualizzare.includes(elemento.type)) {
+            ArrayOpzioniDaVisualizzare.push(elemento.type);
+            tipoDom.innerHTML += `<option value="${elemento.type}">${elemento.type}</option>`;
+		}
+    });
+	console.log(ArrayOpzioniDaVisualizzare);
+    return ArrayOpzioniDaVisualizzare;
+}
