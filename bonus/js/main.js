@@ -128,31 +128,18 @@ icone.forEach((elemento)=> {
 })
 
 //filtro icone per tipo
-tipoDom.addEventListener('change', function(){
-    containerDom.innerHTML = ''
-    if (tipoDom.value == 'animal') {       
-        icone.filter(elemento => {
-            if (elemento.type == 'animal') {
-                containerDom.append(generaCard(elemento));
-            }
-        });
-    } else if (tipoDom.value == 'vegetable') {       
-        icone.filter(elemento => {
-            if (elemento.type == 'vegetable') {
-                containerDom.append(generaCard(elemento));
-            }
-        });
-    } else if (tipoDom.value == 'user') {       
-        icone.filter(elemento => {
-            if (elemento.type == 'user') {
-                containerDom.append(generaCard(elemento));
-            }
-        });
-    } else {
-        icone.forEach(elemento => {
+tipoDom.addEventListener('change', function() {
+    containerDom.innerHTML = '';    
+    icone.filter(elemento => {
+        if (elemento.type === tipoDom.value) {
             containerDom.append(generaCard(elemento));
-        });
-    }
+        } else if (tipoDom.value === 'all') {
+            containerDom.innerHTML = ''; 
+            icone.forEach(elemento => {
+                containerDom.append(generaCard(elemento));
+            });
+        }
+    });
 });
 
 
